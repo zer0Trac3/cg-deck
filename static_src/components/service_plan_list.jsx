@@ -37,7 +37,7 @@ export default class ServicePlanList extends React.Component {
     };
     this._onChange = this._onChange.bind(this);
     this._handleAdd = this._handleAdd.bind(this);
-    this.styler = createStyler(navStyles);
+    this.styler = createStyler(tableStyles);
   }
 
   componentWillReceiveProps(nextProps) {

@@ -26,7 +26,7 @@ export default class UserList extends React.Component {
     };
     this.styler = createStyler(baseStyle);
     this._handleDelete = this._handleDelete.bind(this);
-    this.styler = createStyler(navStyles);
+    this.styler = createStyler(tableStyles);
   }
 
   componentWillReceiveProps(nextProps) {

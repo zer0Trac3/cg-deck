@@ -24,7 +24,7 @@ export default class ServiceList extends React.Component {
     this.state = {
       services: props.initialServices
     };
-    this.styler = createStyler(navStyles);
+    this.styler = createStyler(tableStyles);
   }
 
   componentWillReceiveProps(nextProps) {
