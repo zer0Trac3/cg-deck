@@ -7,11 +7,11 @@ import React from 'react';
 
 import formatDateTime from '../util/format_date';
 
+import baseStyle from 'cloudgov-style/css/base.css';
+import createStyler from '../util/create_styler';
+
 import Button from './button.jsx';
 import UserRoleListControl from './user_role_list_control.jsx';
-
-import createStyler from '../util/create_styler';
-import tableStyles from 'cloudgov-style/css/base.css';
 
 
 export default class UserList extends React.Component {
@@ -21,8 +21,8 @@ export default class UserList extends React.Component {
     this.state = {
       users: props.initialUsers
     };
+    this.styler = createStyler(baseStyle);
     this._handleDelete = this._handleDelete.bind(this);
-    this.styler = createStyler(tableStyles);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,6 +36,7 @@ export default class UserList extends React.Component {
   get columns() {
     var columns = [
       { label: 'Name', key: 'username' },
+      { label: 'Permissions', key: 'permissions' },
       { label: 'Date Created', key: 'created_at' }
     ];
 
@@ -68,6 +69,7 @@ export default class UserList extends React.Component {
             actions = (
               <td column="Actions">
                 <Button
+                classes={[this.styler("usa-button-secondary")]}
                 onClickHandler={ this._handleDelete.bind(this, user.guid) }
                 label="delete">
                   <span>Remove User From Org</span>
@@ -78,17 +80,15 @@ export default class UserList extends React.Component {
           return ([
             <tr key={ user.guid }>
               <td column="Name"><span>{ user.username }</span></td>
-              <td column="Date Created">{ formatDateTime(user.created_at) }</td>
-              { actions }
-            </tr>,
-            <tr key={ user.guid + '-role' }>
-              <td colSpan="2">
+              <td column="Permissions" key={ user.guid + '-role' }>
                 <UserRoleListControl
                   onAddPermissions={ this.props.onAddPermissions }
                   onRemovePermissions={ this.props.onRemovePermissions }
                   user={ user }
                 />
               </td>
+              <td column="Date Created">{ formatDateTime(user.created_at) }</td>
+              { actions }
             </tr>
           ])
         })}

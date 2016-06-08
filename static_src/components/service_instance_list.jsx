@@ -4,12 +4,11 @@ import Reactable from 'reactable';
 
 import formatDateTime from '../util/format_date';
 
+import baseStyle from 'cloudgov-style/css/base.css';
+import createStyler from '../util/create_styler';
 import Button from './button.jsx';
 import serviceActions from '../actions/service_actions.js';
 import ServiceInstanceStore from '../stores/service_instance_store.js';
-
-import createStyler from '../util/create_styler';
-import tableStyles from 'cloudgov-style/css/base.css';
 
 const Table = Reactable.Table;
 const Thead = Reactable.Thead;
@@ -31,7 +30,7 @@ export default class ServiceInstanceList extends React.Component {
     this.state = stateSetter(props);
     this._onChange = this._onChange.bind(this);
     this._handleDelete = this._handleDelete.bind(this);
-    this.styler = createStyler(tableStyles);
+    this.styler = createStyler(baseStyle);
   }
 
   componentDidMount() {
@@ -83,9 +82,10 @@ export default class ServiceInstanceList extends React.Component {
                 </Td>
                 <Td column="Delete">
                   <Button
-                  className={ ["test-delete_instance"] }
-                  onClickHandler={ this._handleDelete.bind(this, instance.guid) }
-                  label="delete">
+                    classes={ ["test-delete_instance",
+                      this.styler("usa-button-secondary")] }
+                    onClickHandler={ this._handleDelete.bind(this, instance.guid)}
+                    label="delete">
                     <span>Delete Instance</span>
                   </Button>
                 </Td>
@@ -97,7 +97,7 @@ export default class ServiceInstanceList extends React.Component {
     }
 
     return (
-      <div className={ this.styler('tableWrapper') }>
+      <div classes={ [this.styler('tableWrapper')] }>
         { content }
       </div>
     );
