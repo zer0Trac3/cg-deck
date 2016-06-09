@@ -11,7 +11,7 @@ import serviceActions from '../actions/service_actions.js';
 import ServicePlanStore from '../stores/service_plan_store.js';
 
 import createStyler from '../util/create_styler';
-import tableStyles from 'cloudgov-style/css/base.css';
+import baseStyle from 'cloudgov-style/css/base.css';
 
 var Table = Reactable.Table,
     Thead = Reactable.Thead,
@@ -37,7 +37,7 @@ export default class ServicePlanList extends React.Component {
     };
     this._onChange = this._onChange.bind(this);
     this._handleAdd = this._handleAdd.bind(this);
-    this.styler = createStyler(tableStyles);
+    this.styler = createStyler(baseStyle);
   }
 
   componentWillReceiveProps(nextProps) {
