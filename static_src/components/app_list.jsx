@@ -81,7 +81,7 @@ export default class AppList extends React.Component {
     }
 
     return (
-      <div classes={ [this.styler('tableWrapper')] }>
+      <div className={ this.styler('tableWrapper') }>
         { content }
       </div>
     );

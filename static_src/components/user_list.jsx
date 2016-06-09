@@ -9,6 +9,7 @@ import formatDateTime from '../util/format_date';
 
 import baseStyle from 'cloudgov-style/css/base.css';
 import createStyler from '../util/create_styler';
+import tableStyles from 'cloudgov-style/css/base.css';
 
 import Button from './button.jsx';
 import UserRoleListControl from './user_role_list_control.jsx';
@@ -23,6 +24,7 @@ export default class UserList extends React.Component {
     };
     this.styler = createStyler(baseStyle);
     this._handleDelete = this._handleDelete.bind(this);
+    this.styler = createStyler(tableStyles);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -54,6 +56,7 @@ export default class UserList extends React.Component {
       content = (
       <table sortable={ true }>
         <thead>
+          <tr>
           { this.columns.map((column) => {
             return (
               <th column={ column.label } className={ column.key }
@@ -61,6 +64,7 @@ export default class UserList extends React.Component {
                 { column.label }</th>
             )
           })}
+          </tr>
         </thead>
         <tbody>
         { this.state.users.map((user) => {
